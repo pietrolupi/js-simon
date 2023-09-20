@@ -45,7 +45,7 @@ btnGenera.addEventListener('click', function(){
   {
     clearText(generatedContainer);
 
-  }, 2000)
+  }, 5000)
 
 
   setTimeout(function() 
@@ -76,9 +76,7 @@ btnGenera.addEventListener('click', function(){
       console.log('RANDOMNUMBERS ---' + generatedList)
     }
     
-  }, 2100)
-
-
+  }, 5200)
   
 })
 
