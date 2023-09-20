@@ -22,3 +22,84 @@ let generatedList = [];
 
 let playerList = [];
 
+let extractedNumbers = []; //utilizzo solo per generare num random univoco 
+
+let correctCounter = 0;
+
+btnGenera.addEventListener('click', function(){
+
+
+  for(let i = 0; i < 5; i++){
+    btnGenera.classList.add('d-none')
+    let randomizedNum = getUniqueRandomNumber(1, 20);
+    
+    generatedList.push(randomizedNum);
+
+    generatedContainer.innerHTML += '  ' + randomizedNum;
+  }
+
+  setTimeout(function()
+  {
+    clearText(generatedContainer);
+
+  }, 2000)
+
+
+  setTimeout(function() 
+  {
+    for(let c = 1; c <= 5; c++){
+      
+      const numSelected = prompt(`quale era il numero in posizione ${c} ?`)
+
+      playerList.push(numSelected);
+    }
+
+    console.log('PLAYERLIST--' + playerList)
+
+    for(let x = 0; x < 5; x++){
+      if(generatedList[x] === playerList[x]){
+        correctCounter ++;
+        resultContainer.innerHTML += playerList[x];
+      }
+    }
+    console.log(correctCounter);
+  }, 2100)
+
+
+  
+})
+
+
+
+
+
+
+
+
+//FUNCTIONS
+
+
+function getRandomNumber(min, max){
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+
+function getUniqueRandomNumber(min, max ){
+  
+  let randomNumber;
+  let isValidNumber = false;
+
+  while(!isValidNumber){
+    randomNumber = getRandomNumber(min, max);
+    
+    if(!extractedNumbers.includes(randomNumber)){ 
+      extractedNumbers.push(randomNumber);
+      isValidNumber = true;
+    }
+  }
+  return randomNumber;
+}
+
+function clearText(whatToClear){
+  whatToClear.innerHTML = ''
+}
