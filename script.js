@@ -17,10 +17,13 @@ const btnGenera = document.getElementById('btn-genera');
 
 const generatedContainer = document.querySelector('.numeri-generati');
 const resultContainer = document.querySelector('.risultati');
+const guessedNumber = document.querySelector('.numeri-indovinati');
 
 let generatedList = [];
 
 let playerList = [];
+
+let guessedList = []; 
 
 let extractedNumbers = []; //utilizzo solo per generare num random univoco 
 
@@ -47,22 +50,32 @@ btnGenera.addEventListener('click', function(){
 
   setTimeout(function() 
   {
-    for(let c = 1; c <= 5; c++){
+    for(let c = 0; c < 5; c++){
       
-      const numSelected = prompt(`quale era il numero in posizione ${c} ?`)
+      const numSelected = parseInt(prompt(`quale era il numero in posizione ${c} ?`))
 
       playerList.push(numSelected);
     }
 
     console.log('PLAYERLIST--' + playerList)
 
-    for(let x = 0; x < 5; x++){
-      if(generatedList[x] === playerList[x]){
+    for(let i = 0; i < 5; i++){
+      if(generatedList[i] == playerList[i]){
         correctCounter ++;
-        resultContainer.innerHTML += playerList[x];
+        guessedNumber.innerHTML += '  ' + playerList[i];
       }
     }
-    console.log(correctCounter);
+    
+    if(correctCounter === 0){
+      guessedNumber.classList.remove('d-none')
+      guessedNumber.innerHTML = 'PESSIMO! 0 numeri indovinati'
+    }else{
+      guessedNumber.classList.remove('d-none')
+      resultContainer.innerHTML = `Hai indovinato ${correctCounter} numeri su 5!`
+      console.log('CORRECT COUNTER ----' + correctCounter);
+      console.log('RANDOMNUMBERS ---' + generatedList)
+    }
+    
   }, 2100)
 
 
