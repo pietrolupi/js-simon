@@ -1,16 +1,3 @@
-
-/* 
-* creo un bottone start e al suo click:
-* genero e stampo in pagina 5 numeri random univoci
-* utilizzo una function per far scomparire i numeri DOPO 5 secondi e far contemporaneamente apparire 5 prompt che chiedono all'utente di inserire i numeri visti in ordine
-* pusho i numeri inseriti in un array
-* leggo l'array dei numeri inseriti con un ciclo e lo confronto con l'array dei numeri generati. 
-* pusho in un array RISULTATI tutti i numeri presenti in entrambe le liste
-
-* stampo messaggio che comunichi la lenght dell'arrayRisultati (QUANTI numeri hai indovinato), e i numeri indovinati (quindi altro ciclo che legga l'arrayRisultati).
-
-*/
-
 const gameContainer = document.getElementById('game-container');
 
 const btnGenera = document.getElementById('btn-genera');
@@ -20,9 +7,7 @@ const resultContainer = document.querySelector('.risultati');
 const guessedNumber = document.querySelector('.numeri-indovinati');
 
 let generatedList = [];
-
 let playerList = [];
-
 let guessedList = []; 
 
 let extractedNumbers = []; //utilizzo solo per generare num random univoco 
@@ -47,7 +32,7 @@ btnGenera.addEventListener('click', function(){
 
   }, 5000)
 
-
+  //NB: creo DUE timeout functions distinte con leggerissimo scarto perchè se avviene tutto in contemporanea i prompt "fissano" la pagina prima che i numeri vengano nascosti correttamente
   setTimeout(function() 
   {
     for(let c = 0; c < 5; c++){
@@ -56,7 +41,7 @@ btnGenera.addEventListener('click', function(){
 
       playerList.push(numSelected);
     }
-
+  
     console.log('PLAYERLIST--' + playerList)
 
     for(let i = 0; i < 5; i++){
